@@ -1,0 +1,48 @@
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class Usertest {
+
+
+	public String url = "http://www.way2automation.com/angularjs-protractor/webtables/";
+	public String drivepath = "C:\\Users\\MiPrint Account\\Downloads\\chromedriver_win32\\chromedriver.exe";
+	WebDriver driver;
+	@Test(priority = 1)
+	public void launchApp()
+	{
+
+		System.setProperty("webdriver.chrome.driver",drivepath);
+		driver = new ChromeDriver();
+		driver.get(url);
+		driver.manage().window().maximize();
+
+	}
+
+	@Test(priority = 2)
+	public void loadUser() {
+
+		//driver.getPageSource().contains("First Name");
+		driver.findElement(By.xpath("/html/body/table/thead/tr[2]/td/button")).click();
+		driver.findElement(By.name("FirstName")).sendKeys("Test");
+		driver.findElement(By.name("LastName")).sendKeys("Automation");
+
+		driver.findElement(By.name("UserName")).sendKeys("User");
+		driver.findElement(By.name("Password")).sendKeys("Test@123");
+		driver.findElement(By.name("optionsRadios")).click();
+
+		Select role = new Select(driver.findElement(By.name("RoleId")));
+		role.selectByIndex(2);
+		driver.findElement(By.name("Email")).sendKeys("pumlatest@gmail.com");
+		driver.findElement(By.name("Mobilephone")).sendKeys("0794444444");
+		driver.findElement(By.cssSelector("button.btn:nth-child(2)")).click();
+		
+
+
+	}
+}
+
+
